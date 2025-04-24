@@ -1,0 +1,36 @@
+{
+  "name": "devconnector",
+  "version": "1.0.0",
+  "description": "Social netwok for developer",
+  "homepage": "https://github.com/Roshan-Chhetri28/DevConnector#readme",
+  "bugs": {
+    "url": "https://github.com/Roshan-Chhetri28/DevConnector/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Roshan-Chhetri28/DevConnector.git"
+  },
+  "license": "MIT",
+  "author": "Roshan Chhetri",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon server"
+  },
+  "dependencies": {
+    "axios": "^1.8.4",
+    "bcrypt": "^5.1.1",
+    "config": "^3.3.12",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "gravatar": "^1.8.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.2",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}
