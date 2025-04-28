@@ -6,6 +6,36 @@
   --danger-color: #dc3545;
   --success-color: #28a745;
 }
+/* Variables */
+.spinner-loader {
+  --loader-color: #4f46e5;
+  --loader-width: 45px;
+  --loader-height: 70px;
+  --loader-bar-width: 10px;
+  --loader-speed: 1s;
+}
+
+/* Styles */
+.spinner-loader {
+  width: var(--loader-width);
+  height: var(--loader-height);
+  background:
+    linear-gradient(#0000 calc(1*100%/6), var(--loader-color) 0 calc(3*100%/6), #0000 0),
+    linear-gradient(#0000 calc(2*100%/6), var(--loader-color) 0 calc(4*100%/6), #0000 0),
+    linear-gradient(#0000 calc(3*100%/6), var(--loader-color) 0 calc(5*100%/6), #0000 0);
+  background-size: var(--loader-bar-width) 400%;
+  background-repeat: no-repeat;
+  animation: matrix var(--loader-speed) infinite linear;
+  margin: auto, auto;
+  position: absolute;
+  bottom: 50vh;
+  left: 50vw;
+}
+
+@keyframes matrix {
+  0% { background-position: 0% 100%, 50% 100%, 100% 100%; }
+  100% { background-position: 0% 0%, 50% 0%, 100% 0%; }
+}
 
 * {
   box-sizing: border-box;
@@ -37,6 +67,7 @@ img {
 /* Utilities */
 .container {
   max-width: 1100px;
+  height: 90vh;
   margin: auto;
   overflow: hidden;
   padding: 0 2rem;
