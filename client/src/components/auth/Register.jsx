@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
-const Register = () => {
+import { connect } from 'react-redux'
+import { setAlert } from '../../actions/alert'
+import PropTypes from 'prop-types'
+const Register = ({ setAlert }) => {
   const [formData, setFormData] = useState({
-    name:'',
-    email:'',
-    password:'',
-    password2:''
+    name: '',
+    email: '',
+    password: '',
+    password2: ''
   })
 
   const {
@@ -15,22 +18,22 @@ const Register = () => {
     password2
   } = formData
 
-  const onChange = e => setFormData({...formData, [e.target.name]:e.target.value})
-  const onSubmit = async (e)=>{
+  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onSubmit = async (e) => {
     e.preventDefault()
-    if(password!==password2){
-      console.error("password do not match")
+    if (password !== password2) {
+      setAlert("password do not match", "danger", 5000)
 
-    }else{
-      const newUser= {
+    } else {
+      const newUser = {
         name,
         email,
         password
       }
       try {
-        const config ={
-          headers:{
-            'Content-Type':"application/json"
+        const config = {
+          headers: {
+            'Content-Type': "application/json"
           }
         }
 
@@ -42,17 +45,17 @@ const Register = () => {
       }
     }
   }
-  
+
   return (
-    <section className="container">
+    <>
       <h1 className="large text-primary">Sign Up</h1>
       <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-      <form className="form" action="create-profile.html" onSubmit={e=>onSubmit(e)}>
+      <form className="form" action="create-profile.html" onSubmit={e => onSubmit(e)}>
         <div className="form-group">
-          <input type="text" placeholder="Name" name="name" value={name} onChange={e=>onChange(e)} required />
+          <input type="text" placeholder="Name" name="name" value={name} onChange={e => onChange(e)} required />
         </div>
         <div className="form-group">
-          <input type="email" placeholder="Email Address" value={email} onChange={e=>onChange(e)} name="email" required/>
+          <input type="email" placeholder="Email Address" value={email} onChange={e => onChange(e)} name="email" required />
           <small className="form-text"
           >This site uses Gravatar so if you want a profile image, use a
             Gravatar email</small>
@@ -63,7 +66,7 @@ const Register = () => {
             placeholder="Password"
             name="password"
             value={password}
-            onChange={e=>onChange(e)}
+            onChange={e => onChange(e)}
             minLength="6"
             required
           />
@@ -74,7 +77,7 @@ const Register = () => {
             placeholder="Confirm Password"
             name="password2"
             value={password2}
-            onChange={e=>onChange(e)}
+            onChange={e => onChange(e)}
             minLength="6"
             required
           />
@@ -84,8 +87,12 @@ const Register = () => {
       <p className="my-1">
         Already have an account? <a href="login.html">Sign In</a>
       </p>
-    </section>
+    </>
   )
 }
 
-export default Register
+Register.propTypes = {
+  setAlert: PropTypes.func.isRequired,
+}
+
+export default connect(null, { setAlert })(Register)

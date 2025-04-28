@@ -384,9 +384,9 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 //@access   Public
 router.get('/github/:username', async (req, res) => {
     try {
-        const URI= `https://api.github.com/users/${req.params.username}/repos`
+        const URI = `https://api.github.com/users/${req.params.username}/repos`
         const params = {
-            per_page : 5,
+            per_page: 5,
             sort: "created:asc",
             client_id: config.get('githubClientId'),
             client_secret: config.get('githubSecret')
@@ -394,7 +394,7 @@ router.get('/github/:username', async (req, res) => {
 
 
         const githubresponse = await axios.get(URI, {
-            headers :{'user-agent': 'node.js'},
+            headers: { 'user-agent': 'node.js' },
             params
         })
 

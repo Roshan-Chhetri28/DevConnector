@@ -4,53 +4,53 @@ const Schema = mongoose.Schema
 
 const PostSchema = new Schema({
 
-    user:{
+    user: {
         type: Schema.Types.ObjectId,
         ref: "user"
     },
-    text:{
+    text: {
         type: String,
         required: true
     },
     // * Even if the user deletes acount we would want to see the post he/she did therefore name and avatar in post
-    name:{
+    name: {
         type: String,
     },
-    avatar:{
+    avatar: {
         type: String,
 
     },
-    likes:[
+    likes: [
         {
-            user:{
+            user: {
                 type: Schema.Types.ObjectId,
                 ref: 'users'
             },
         }
     ],
-    comments:[{
-        user:{
+    comments: [{
+        user: {
             type: Schema.Types.ObjectId,
-            ref:'users',
+            ref: 'users',
         },
-        text:{
+        text: {
             type: String,
             required: true,
         },
-        name:{
+        name: {
             type: String
         },
-        avatar:{
+        avatar: {
             type: String
         },
-        date:{
+        date: {
             type: Date,
             default: Date.now
         }
 
     }],
-    date:{
-        type:Date,
+    date: {
+        type: Date,
         default: Date.now,
     }
 })

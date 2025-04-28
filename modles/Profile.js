@@ -57,56 +57,56 @@ const ProfileSchema = new mongoose.Schema({
             }
         }
     ],
-    education:[
+    education: [
         {
-            school:{
+            school: {
                 type: String,
                 required: true
             },
-            degree:{
+            degree: {
                 type: String,
                 required: true
             },
-            fieldofstudy:{
+            fieldofstudy: {
                 type: String,
                 required: true
             },
-            from:{
+            from: {
                 type: Date,
                 required: true
             },
-            to:{
+            to: {
                 type: Date
             },
-            current:{
-                type:Boolean,
+            current: {
+                type: Boolean,
                 default: false
             },
-            description:{
+            description: {
                 type: String
             }
         }
     ],
-    social:{
-        youtube:{
+    social: {
+        youtube: {
             type: String
         },
-        twitter:{
+        twitter: {
             type: String
         },
-        facebook:{
-            type:String
+        facebook: {
+            type: String
         },
-        linkedin:{
-            type:String
+        linkedin: {
+            type: String
         },
-        instagram:{
+        instagram: {
             type: String
         }
     },
 
-    date:{
-        type:Date,
+    date: {
+        type: Date,
         default: Date.now
     }
 
