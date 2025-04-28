@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-const Login = () => {
+import { Link, Navigate } from 'react-router-dom'
+import { connect } from 'react-redux'
+import propTypes from 'prop-types'
+import { login } from '../../actions/auth'
+
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -12,34 +15,26 @@ const Login = () => {
     password
   } = formData
 
-  const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+  const onChange = e => setFormData({
+    ...formData,
+    [e.target.name]: e.target.value
+  })
+
+
   const onSubmit = async (e) => {
     e.preventDefault()
 
-    const body = {
+    login(email, password)
+  }
 
-      email,
-      password
-    }
-    try {
-      const config = {
-        headers: {
-          'Content-Type': "application/json"
-        }
-      }
+  // @redirect if logged in
 
-      const res = await axios.post('http://localhost:5000/api/auth', body, config)
-      console.log(res.data)
-    } catch (err) {
-      console.error(err.response.data);
-    }
+  if (isAuthenticated) {
+    return <Navigate to = "/"/>
   }
 
   return (
     <section className="container">
-      <div className="alert alert-danger">
-        Invalid credentials
-      </div>
       <h1 className="large text-primary">Sign In</h1>
       <p className="lead"><i className="fas fa-user"></i> Sign into Your Account</p>
       <form className="form" onSubmit={e => { onSubmit(e) }}>
@@ -71,4 +66,13 @@ const Login = () => {
   )
 }
 
-export default Login
+Login.propTypes = {
+  login: propTypes.func.isRequired,
+  isAuthenticated: propTypes.bool,
+}
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+})
+
+export default connect(mapStateToProps, { login })(Login)
