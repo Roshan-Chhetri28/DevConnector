@@ -1,4 +1,4 @@
-import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE } from "../actions/types"
+import { GET_PROFILE, PROFILE_ERROR, CLEAR_PROFILE, UPDATE_PROFILE } from "../actions/types"
 
 const initialState = {
     profile: null, // * is going to hold all the profile data and put that in i.e. current user data and visited user data 
@@ -13,6 +13,7 @@ export default function profile(state = initialState, action) {
 
     switch (type) {
         case GET_PROFILE:
+        case UPDATE_PROFILE:
             return {
                 ...state,
                 profile: payload, // * we are sending the res back which includes profile so we are adding that to state
@@ -25,7 +26,7 @@ export default function profile(state = initialState, action) {
                 loading: false
             }
         case CLEAR_PROFILE:
-            return{
+            return {
                 ...state,
                 profile: null,
                 repos: [],

@@ -1,11 +1,13 @@
-import React, { Fragment, useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { getCurrentProfile } from '../actions/profile'
 import Spinner from '../components/layout/Spinner'
 import { Link } from 'react-router-dom'
-
-const Dashboard = ({ getCurrentProfile, auth:{user}, profile: { profile, loading } }) => {
+import DashboardActions from './DashboardActions'
+import Experience from './Experience'
+import Education from './Education'
+const Dashboard = ({ getCurrentProfile, auth: { user }, profile: { profile, loading } }) => {
 
   useEffect(() => {
     getCurrentProfile()
@@ -21,15 +23,19 @@ const Dashboard = ({ getCurrentProfile, auth:{user}, profile: { profile, loading
           <i className='fa-solid fa-user'> Welcome {user && user.name}</i>
         </p>
         {
-          profile !==null? <>
-          
-          has
-          </>: <>
-          <p>You have not yet setup profile please set up first </p>
-          <Link to='/create-profile' className='btn btn-primary'>
-            create profile
-          </Link>
-          </>
+          profile !== null ?
+            <>
+              <DashboardActions />
+              <Experience experience={profile.experience} />
+              <Education education={profile.education} />
+            </>
+            :
+            <>
+              <p>You have not yet setup profile please set up first </p>
+              <Link to='/create-profile' className='btn btn-primary'>
+                create profile
+              </Link>
+            </>
         }
       </>
   )
