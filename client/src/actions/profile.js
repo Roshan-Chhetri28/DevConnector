@@ -157,30 +157,30 @@ export const deleteExperience = (id) => async dispatch => {
 // @Delete Education
 export const deleteEducation = (id) => async dispatch => {
     try {
-        const res = await axios.delete(`/api/profile/education/${id}`)
+        const res = await axios.delete(`/api/profile/education/${id}`);
 
         dispatch({
             type: UPDATE_PROFILE,
             payload: res.data
-        })
-        dispatch(setAlert('Education Removed', 'success', 5000))
+        });
+        dispatch(setAlert('Education Removed', 'success', 5000));
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
             payload: { msg: err.response.statusText, status: err.response.status }
-        })
+        });
     }
-}
+};
 
 // @ Delete account and Profile
 export const deleteAccount = () => async dispatch => {
     if (window.confirm('Are you sure This can not be un done')) {
         try {
-            const res = await axios.delete(`/api/profile/education/${id}`)
+            await axios.delete(`/api/profile`)
 
             dispatch({ type: CLEAR_PROFILE })
             dispatch({ type: ACCOUNT_DELETED })
-            dispatch(setAlert('Education Removed', 'success', 5000))
+            dispatch(setAlert('Your account has been permenantly deleted', 5000))
         } catch (err) {
             dispatch({
                 type: PROFILE_ERROR,

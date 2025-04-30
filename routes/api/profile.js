@@ -8,6 +8,7 @@ const { check, validationResult } = require('express-validator')
 
 const Profile = require("../../modles/Profile")
 const User = require("../../modles/User")
+const Post = require('../../modles/Post')
 
 //@route    GET api/profile/me
 //@desc     Get current user profile
@@ -73,7 +74,9 @@ router.post('/', [auth, [
     if (status) profileFields.status = status
     if (githubusername) profileFields.githubusername = githubusername
     if (skills) {
-        profileFields.skills = skills.split(',').map(skill => skill.trim())
+        profileFields.skills = Array.isArray(skills)
+            ? skills.map(skill => skill.trim())
+            : skills.split(',').map(skill => skill.trim());
     }
 
     // build social object
@@ -157,7 +160,8 @@ router.get('/user/:user_id', async (req, res) => {
 router.delete('/', auth, async (req, res) => {
     try {
 
-        // TODO - remove users post
+        // ! Remove user post
+        await Post.deleteMany({user:req.user.id})
 
 
         //!remove profile 
@@ -189,7 +193,7 @@ router.put('/experience', [auth, [
 ]],
     async (req, res) => {
         const errors = validationResult(req)
-        if (!errors.isEmpty) {
+        if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
 
@@ -310,7 +314,7 @@ router.put('/education', [auth, [
 ]],
     async (req, res) => {
         const errors = validationResult(req)
-        if (!errors.isEmpty) {
+        if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() })
         }
 
