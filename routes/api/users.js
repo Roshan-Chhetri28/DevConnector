@@ -25,8 +25,8 @@ router.post('/',
             return res.status(400).json({ errors: errors.array() })
         }
 
-        const { name, email, password } = req.body
-
+        let { name, email, password } = req.body
+        email = email.toLowerCase()
         try {
             //See user exist
             let user = await User.findOne({ email })
@@ -63,7 +63,7 @@ router.post('/',
                 }
             }
 
-            jwt.sign(payload,
+            jwt.sign(payload, 
                 config.get('jwtSecret'),
 
                 { expiresIn: 3600 },

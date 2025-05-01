@@ -16,7 +16,6 @@ const Experience = ({ experience, deleteExperience }) => {
                     
                     deleteExperience(exp._id)
                 }} className="btn btn-danger">Delete</button>
-                {console.log(experience)}
             </td>
         </tr>
 

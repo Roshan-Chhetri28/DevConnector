@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { addEducation } from '../../actions/profile'
 import { Link, useNavigate } from 'react-router-dom'
-import { current } from '@reduxjs/toolkit'
 const AddEducation = ({ addEducation }) => {
 
     const navigate = useNavigate()
@@ -60,7 +59,7 @@ const AddEducation = ({ addEducation }) => {
                         name="school"
                         value={school}
                         onChange={e => onChange(e)}
-                        
+
                     />
                 </div>
                 <div className="form-group">
@@ -70,7 +69,7 @@ const AddEducation = ({ addEducation }) => {
                         name="degree"
                         value={degree}
                         onChange={e => onChange(e)}
-                        
+
                     />
                 </div>
                 <div className="form-group">
@@ -79,7 +78,7 @@ const AddEducation = ({ addEducation }) => {
                 </div>
                 <div className="form-group">
                     <h4>From Date</h4>
-                    <input type="date"  value={from}
+                    <input type="date" value={from}
                         onChange={e => onChange(e)} name="from" />
                 </div>
                 <div className="form-group">
@@ -93,7 +92,7 @@ const AddEducation = ({ addEducation }) => {
                 <div className="form-group">
                     <h4>To Date</h4>
                     <input type="date" value={to}
-                        onChange={e => onChange(e)} disabled={toDateDisabled?'disabled':''}  name="to" />
+                        onChange={e => onChange(e)} disabled={toDateDisabled ? 'disabled' : ''} name="to" />
                 </div>
                 <div className="form-group">
                     <textarea

@@ -46,7 +46,7 @@ const EditProfile = ({
             instagram: loading || !profile.social ? '' : profile.social.instagram
         })
 
-    }, [loading]) // * when it loads this useEffect runs
+    }, [getCurrentProfile, loading]) // * when it loads this useEffect runs
     const {
         company,
         website,
