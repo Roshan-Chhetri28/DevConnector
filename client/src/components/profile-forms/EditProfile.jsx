@@ -28,7 +28,7 @@ const EditProfile = ({
     })
 
     const [displaySocialInput, toggleSocialInput] = useState(false)
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {
         getCurrentProfile()
         setFormData({
@@ -46,7 +46,7 @@ const EditProfile = ({
             instagram: loading || !profile.social ? '' : profile.social.instagram
         })
 
-    }, [getCurrentProfile, loading]) // * when it loads this useEffect runs
+    }, [getCurrentProfile, loading])
     const {
         company,
         website,

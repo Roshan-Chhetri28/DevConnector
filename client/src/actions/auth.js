@@ -45,7 +45,7 @@ export const login = (email, password) => async dispatch => {
         dispatch(loadUser())
         dispatch(setAlert("User Logged in", "primary", 5000))
     } catch (err) {
-        const errors = err.response.data.errors;
+        const errors = err.response?.data?.errors
         if (errors) {
             errors.forEach(error => {
                 dispatch(setAlert(error.msg, 'danger', 5000))
@@ -79,7 +79,7 @@ export const register = ({ name, email, password }) => async dispatch => {
         dispatch(loadUser())
         dispatch(setAlert("User Registered", "primary", 5000))
     } catch (err) {
-        const errors = err.response.data.errors;
+        const errors = err.response?.data?.errors
         if (errors) {
             errors.forEach(error => {
                 dispatch(setAlert(error.msg, 'danger', 5000))

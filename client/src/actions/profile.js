@@ -101,7 +101,7 @@ export const createProfile = (formData, navigate, edit = false) => async dispatc
             navigate('/dashboard') //* redirecting using Navigation doesnot work on action so we pass history object and use .push method to redirect
         }
     } catch (err) {
-        const errors = err.response.data.errors;
+        const errors = err.response?.data?.errors;
         // console.log(err.response.data)
         if (errors) {
             errors.forEach(error => {
@@ -139,7 +139,7 @@ export const addExperience = (formData, navigate) => async dispatch => {
         navigate('/dashboard') //* redirecting using Navigation doesnot work on action so we pass history object and use .push method to redirect
 
     } catch (err) {
-        const errors = err.response.data.errors;
+        const errors = err.response?.data?.errors;
         // console.log(errors)
         if (errors) {
             errors.forEach(error => {
@@ -177,7 +177,7 @@ export const addEducation = (formData, navigate) => async dispatch => {
         navigate('/dashboard') //* redirecting using Navigation doesnot work on action so we pass history object and use .push method to redirect
 
     } catch (err) {
-        const errors = err.response.data.errors;
+        const errors = err.response?.data?.errors;
         // console.log(err.response.data)
         if (errors) {
             errors.forEach(error => {
