@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment/moment'
-import { connect } from 'react-redux'
 const ProfileExperience = ({ experience: {
     company,
     title,
@@ -18,9 +17,9 @@ const ProfileExperience = ({ experience: {
             <p>{moment(from).format("YYYY/MM/DD")} - {to ? moment(to).format("YYYY/MM/DD") : "Now"}</p>
             <p><strong>Position: </strong>{title}</p>
 
-            <p>
+            {/* <p>
                 <strong>Description: </strong>{description?{description}:<>No description provided</>}
-            </p>
+            </p> */}
 
         </div>
     )

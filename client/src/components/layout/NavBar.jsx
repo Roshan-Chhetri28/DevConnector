@@ -11,13 +11,17 @@ const NavBar = ({ auth: { isAuthenticated, loading }, logout }) => {
         </Link>
       </li>
       <li>
+        <Link to="/posts">Post
+        </Link>
+      </li>
+      <li>
         <Link to="/dashboard">
           <i className="fa-solid fa-user"></i>{' '}
           <span className='hide-sm'>Dashboard</span>
         </Link>
       </li>
       <li>
-        <Link onClick={logout} to="#!">
+        <Link onClick={logout} to="/login">
           <i className="fa-solid fa-right-from-bracket"></i>{' '}
           <span className='hide-sm'>Logout</span>
         </Link>
