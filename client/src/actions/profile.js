@@ -16,7 +16,7 @@ export const getCurrentProfile = () => async dispatch => {
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.message, status: err }
         })
     }
 }
@@ -35,7 +35,7 @@ export const getProfileById = (user_id) => async dispatch => {
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.message, status: err }
         })
     }
 }
@@ -52,7 +52,7 @@ export const getGithubRepos = (username) => async dispatch => {
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.message, status: err }
         })
     }
 }
@@ -60,10 +60,10 @@ export const getGithubRepos = (username) => async dispatch => {
 // @ Get all Profiles
 export const getProfiles = () => async dispatch => {
 
-    dispatch({type: CLEAR_PROFILE})
+    dispatch({ type: CLEAR_PROFILE })
 
     try {
-        const res = await axios.get('/api/profile/')
+        const res = await axios.get('http://localhost:5000/api/profile/')
 
 
         dispatch({
@@ -73,7 +73,7 @@ export const getProfiles = () => async dispatch => {
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.message, status: err }
         })
     }
 }
@@ -109,7 +109,7 @@ export const createProfile = (formData, navigate, edit = false) => async dispatc
             })
             dispatch({
                 type: PROFILE_ERROR,
-                payload: { msg: err.response.statusText, status: err.response.status }
+                payload: { msg: err.message, status: err }
             })
 
         }
@@ -127,7 +127,7 @@ export const addExperience = (formData, navigate) => async dispatch => {
             }
         }
         let body = JSON.stringify(formData)
-        const res = await axios.put('http://localhost:5000/api/profile/experience', body, config)
+        const res = await axios.put(' http://localhost:5000/api/profile/experience', body, config)
 
         dispatch({
             type: UPDATE_PROFILE,
@@ -147,7 +147,7 @@ export const addExperience = (formData, navigate) => async dispatch => {
             })
             dispatch({
                 type: PROFILE_ERROR,
-                payload: { msg: err.response.statusText, status: err.response.status }
+                payload: { msg: err.message, status: err }
             })
 
         }
@@ -185,7 +185,7 @@ export const addEducation = (formData, navigate) => async dispatch => {
             })
             dispatch({
                 type: PROFILE_ERROR,
-                payload: { msg: err.response.statusText, status: err.response.status }
+                payload: { msg: err.message, status: err }
             })
 
         }
@@ -197,7 +197,7 @@ export const addEducation = (formData, navigate) => async dispatch => {
 
 export const deleteExperience = (id) => async dispatch => {
     try {
-        const res = await axios.delete(`/api/profile/experience/${id}`)
+        const res = await axios.delete(`http://localhost:5000/api/profile/experience/${id}`)
 
         dispatch({
             type: UPDATE_PROFILE,
@@ -207,7 +207,7 @@ export const deleteExperience = (id) => async dispatch => {
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.message, status: err }
         })
     }
 }
@@ -215,7 +215,7 @@ export const deleteExperience = (id) => async dispatch => {
 // @Delete Education
 export const deleteEducation = (id) => async dispatch => {
     try {
-        const res = await axios.delete(`/api/profile/education/${id}`);
+        const res = await axios.delete(`http://localhost:5000/api/profile/education/${id}`);
 
         dispatch({
             type: UPDATE_PROFILE,
@@ -225,7 +225,7 @@ export const deleteEducation = (id) => async dispatch => {
     } catch (err) {
         dispatch({
             type: PROFILE_ERROR,
-            payload: { msg: err.response.statusText, status: err.response.status }
+            payload: { msg: err.message, status: err }
         });
     }
 };
@@ -234,7 +234,7 @@ export const deleteEducation = (id) => async dispatch => {
 export const deleteAccount = () => async dispatch => {
     if (window.confirm('Are you sure This can not be un done')) {
         try {
-            await axios.delete(`/api/profile`)
+            await axios.delete(`http://localhost:5000/api/profile`)
 
             dispatch({ type: CLEAR_PROFILE })
             dispatch({ type: ACCOUNT_DELETED })
@@ -242,12 +242,12 @@ export const deleteAccount = () => async dispatch => {
         } catch (err) {
             dispatch({
                 type: PROFILE_ERROR,
-                payload: { msg: err.response.statusText, status: err.response.status }
+                payload: { msg: err.message, status: err }
             })
         }
     }
 
-} 
+}
 
 
 
