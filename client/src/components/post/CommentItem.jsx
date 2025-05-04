@@ -26,8 +26,9 @@ const CommentItem = ({ postId, comment: { _id, text, name, avatar, user, date },
                         Posted on {moment(date).format("DD/MM/YY")}
                     </p>
                     {
-                        !auth.loading && user == auth.user._id && (
-                            <button onClick={e =>{ deleteComment(postId, _id)
+                        !auth.loading && user === auth.user._id && (
+                            <button onClick={e => {
+                                deleteComment(postId, _id)
                                 window.location.reload()
                             }} className="btn btn-danger" type='button' >
                                 <i className="fa-solid fa-times"></i>
