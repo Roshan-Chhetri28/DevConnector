@@ -1,17 +1,15 @@
-const mongoose = require("mongoose")
-const config = require("config") // it is like load_env()
-const db = process.env.mongoURI; // it is like os.getenv("mongoURI")
+const mongoose = require('mongoose');
+require('dotenv').config(); // ✅ Make sure this is here
 
 const connectDB = async () => {
     try {
-        await mongoose.connect(db) // connects to the remote hosted db through URI
+        const conn = await mongoose.connect(process.env.MONGO_URI);
 
-        console.log("DB connected")
+        console.log(`✅ MongoDB Connected: ${conn.connection.host}`);
     } catch (err) {
-        console.error(err.message)
-        // exit process with faliure
-        process.exit(1)
+        console.error('❌ MongoDB connection failed:', err.message);
+        process.exit(1); // Exit process with failure
     }
-}
+};
 
 module.exports = connectDB;
