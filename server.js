@@ -50,7 +50,7 @@ app.use('/api/auth', require('./routes/api/auth'));
 //serve static assets in production 
 if (process.env.NODE_ENV === 'production') {
     // resolve to /opt/render/project/client/build
-    const clientBuildPath = path.resolve(__dirname, '..', 'client', 'build');
+    const clientBuildPath = path.resolve(__dirname, 'client', 'build');
 
     app.use(express.static(clientBuildPath));
 
