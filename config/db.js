@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 const config = require("config") // it is like load_env()
-const db = config.get('mongoURI') // it is like os.getenv("mongoURI")
+const db = process.env.mongoURI; // it is like os.getenv("mongoURI")
 
 const connectDB = async () => {
     try {
