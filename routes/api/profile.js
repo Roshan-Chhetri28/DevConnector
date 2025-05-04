@@ -392,8 +392,8 @@ router.get('/github/:username', async (req, res) => {
         const params = {
             per_page: 5,
             sort: "created:asc",
-            const clientId = process.env.GITHUB_CLIENT_ID;
-            const clientSecret = process.env.GITHUB_SECRET;
+            clientId = process.env.GITHUB_CLIENT_ID,
+            clientSecret = process.env.GITHUB_SECRET
         }
 
 
