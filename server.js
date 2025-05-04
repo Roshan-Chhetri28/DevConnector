@@ -12,7 +12,7 @@ app.use(cors({
     allowedHeaders: [
         'Content-Type',
         'Authorization',
-        'x-auth-token'       // ← add this
+        'x-auth-token'
     ],
     credentials: true
 }));

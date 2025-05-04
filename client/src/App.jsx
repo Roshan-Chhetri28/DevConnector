@@ -81,7 +81,7 @@ const App = () => {
                 <Posts />
               </PrivateRoute>
             } />
-            <Route path="/post" element={
+            <Route path="/post/:id" element={
               <PrivateRoute>
                 <Post />
               </PrivateRoute>
