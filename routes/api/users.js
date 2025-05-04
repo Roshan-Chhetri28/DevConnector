@@ -3,10 +3,10 @@ const router = express.Router()
 const gravatar = require('gravatar') // for getting avatar
 const bcrypt = require('bcrypt') // hashes characters
 const jwt = require('jsonwebtoken') //for auth middleware so that users dont byepass without proper auth token
-const config = require('config')
 const { check, validationResult } = require('express-validator') // 
 const User = require('../../modles/User')
-
+const jwt = require('jsonwebtoken');
+require('dotenv').config(); 
 
 
 //@route    POST api/users
@@ -64,7 +64,7 @@ router.post('/',
             }
 
             jwt.sign(payload, 
-                config.get('jwtSecret'),
+                process.env.JWT_SECRET,
 
                 { expiresIn: 3600 },
 
