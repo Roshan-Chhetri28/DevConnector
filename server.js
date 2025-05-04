@@ -2,8 +2,21 @@ const express = require('express');
 const connectDB = require('./db_config/db');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const app = express();
 const path = require('path')
+const app = express();
+
+const _use = app.use.bind(app);
+app.use = (path, ...handlers) => {
+    console.log('app.use ->', path);
+    return _use(path, ...handlers);
+};
+
+const _get = app.get.bind(app);
+app.get = (path, ...handlers) => {
+    console.log('app.get ->', path);
+    return _get(path, ...handlers);
+};
+
 
 // ✅ Fix CORS here
 
@@ -44,4 +57,4 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, '0.0.0.0',() => console.log(`Server started on port: ${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Server started on port: ${PORT}`));
