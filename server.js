@@ -49,12 +49,14 @@ app.use('/api/auth', require('./routes/api/auth'));
 
 //serve static assets in production 
 if (process.env.NODE_ENV === 'production') {
-    // serve React’s build folder
-    app.use(express.static('client/build'));
+    // resolve to /opt/render/project/client/build
+    const clientBuildPath = path.resolve(__dirname, '..', 'client', 'build');
+
+    app.use(express.static(clientBuildPath));
 
     app.get(/.*/, (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-      });
+        res.sendFile(path.join(clientBuildPath, 'index.html'));
+    });
 }
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, '0.0.0.0', () => console.log(`Server started on port: ${PORT}`));
