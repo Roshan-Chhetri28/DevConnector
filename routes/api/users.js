@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt') // hashes characters
 const jwt = require('jsonwebtoken') //for auth middleware so that users dont byepass without proper auth token
 const { check, validationResult } = require('express-validator') // 
 const User = require('../../modles/User')
-const jwt = require('jsonwebtoken');
 require('dotenv').config(); 
 
 
