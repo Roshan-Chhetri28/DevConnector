@@ -1,7 +1,7 @@
 {
   "name": "devconnector",
   "version": "1.0.0",
-  "description": "Social netwok for developer",
+  "description": "Social network for developers",
   "homepage": "https://github.com/Roshan-Chhetri28/DevConnector#readme",
   "bugs": {
     "url": "https://github.com/Roshan-Chhetri28/DevConnector/issues"
@@ -20,13 +20,12 @@
     "server": "nodemon server.js",
     "client": "cd client && npm start",
     "client:build": "cd client && npm run build",
-    "postinstall": "npm run client:build"
+    "postinstall": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
-    "config": "^3.3.12",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
