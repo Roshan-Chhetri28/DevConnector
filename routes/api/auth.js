@@ -1,16 +1,16 @@
 const express = require("express")
 const router = express.Router()
 const auth = require("../../middleware/auth")
+// const User = require("../../models/User")
 const User = require("../../modles/User")
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const config = require('config')
+require('dotenv').config();  // ✅ Add dotenv to load environment variables
 const { check, validationResult } = require('express-validator')
 
-
-//@route    GET api/auth
-//@desc     Find User by id / Get user data by id with out password
-//@access   Public
+// @route    GET api/auth
+// @desc     Find User by id / Get user data by id without password
+// @access   Public
 
 router.get('/', auth, async (req, res) => {
     try {
@@ -22,13 +22,13 @@ router.get('/', auth, async (req, res) => {
     }
 })
 
-//@route    POST api/auth
-//@desc     Authenticate user and get token
-//@access   Public
+// @route    POST api/auth
+// @desc     Authenticate user and get token
+// @access   Public
 
 router.post('/',
     [
-        check('email', 'Please include valid email').isEmail(),
+        check('email', 'Please include a valid email').isEmail(),
         check('password', 'Password is required').exists()
     ],
     async (req, res) => {
@@ -40,7 +40,7 @@ router.post('/',
         const { email, password } = req.body
 
         try {
-            //See user exist
+            // Check if user exists
             let user = await User.findOne({ email })
 
             if (!user) {
@@ -53,8 +53,7 @@ router.post('/',
                 return res.status(400).json({ errors: [{ msg: "Invalid Credentials" }] })
             }
 
-
-            //retun json web token
+            // Return JSON Web Token
             const payload = {
                 user: {
                     id: user.id
@@ -62,25 +61,19 @@ router.post('/',
             }
 
             jwt.sign(payload,
-                config.get('jwtSecret'),
+                process.env.JWT_SECRET,  // ✅ Change to process.env.JWT_SECRET
 
-                { expiresIn: 360000 },
+                { expiresIn: 360000 }, // Adjust token expiration if needed
 
                 (err, token) => {
                     if (err) throw err;
                     res.json({ token });
                 }
             )
-
-
         } catch (err) {
             console.error(err.message);
             res.status(500).send('Server Error');
         }
-
-
-
-
     }
 )
 

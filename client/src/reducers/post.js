@@ -1,8 +1,11 @@
 import {
+    ADD_COMMENT,
     ADD_POST,
     DELETE_POST,
+    GET_POST,
     GET_POSTS,
     POST_ERROR,
+    REMOVE_COMMENT,
     UPDATE_LIKES
 } from '../actions/types'
 
@@ -25,6 +28,12 @@ export default function post(state = initialState, action) {
                 posts: payload,
                 loading: false
             }
+        case GET_POST:
+            return {
+                ...state,
+                post: payload,
+                loading: false
+            }
         case POST_ERROR:
             return {
                 ...state,
@@ -45,7 +54,22 @@ export default function post(state = initialState, action) {
         case ADD_POST:
             return {
                 ...state,
-                posts: [ payload,state.posts,],
+                posts: [payload, ...state.posts,],
+                loading: false
+            }
+        case ADD_COMMENT:
+            return {
+                ...state,
+                post: { ...state.post, comments: payload },
+                loading: false
+            }
+        case REMOVE_COMMENT:
+            return {
+                ...state,
+                post: {
+                    ...state.post,
+                    comment: state.post.comments.fiter(comment => comment._id !== payload)
+                },
                 loading: false
             }
         default:

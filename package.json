@@ -1,7 +1,7 @@
 {
   "name": "devconnector",
   "version": "1.0.0",
-  "description": "Social netwok for developer",
+  "description": "Social network for developers",
   "homepage": "https://github.com/Roshan-Chhetri28/DevConnector#readme",
   "bugs": {
     "url": "https://github.com/Roshan-Chhetri28/DevConnector/issues"
@@ -15,17 +15,20 @@
   "type": "commonjs",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
-    "server": "nodemon server",
+    "start": "node server.js",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "nodemon server.js",
     "client": "cd client && npm start",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client:build": "cd client && npm run build",
+    "postinstall": "cd client && npm install && npm run build"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.7.0",
     "axios": "^1.8.4",
     "bcrypt": "^5.1.1",
-    "config": "^3.3.12",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
     "gravatar": "^1.8.2",
@@ -42,3 +45,4 @@
     "nodemon": "^3.1.9"
   }
 }
+  

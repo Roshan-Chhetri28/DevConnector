@@ -1,16 +1,23 @@
-import { SET_ALERT, REMOVE_ALERT } from "../actions/types"
+import { SET_ALERT, REMOVE_ALERT } from "../actions/types";
 
-const initialState = [] // * this will be an array of objects
+// Initial state is an empty array of alerts
+const initialState = [];
 
-export default function alert(state = initialState, action){
-    const { type, payload } = action
+/**
+ * Alert reducer to manage toast-style alerts.
+ * Each alert is an object: { id, msg, alertType, timeout }
+ */
+export default function alertReducer(state = initialState, action) {
+  const { type, payload } = action;
 
-    switch (type) {
-        case SET_ALERT:
-            return [...state, payload] //* payload contains .message and .id
-        case REMOVE_ALERT:
-            return state.filter(alert => alert.id !== payload)
-        default:
-            return state;
-    }
+  switch (type) {
+    case SET_ALERT:
+      return [...state, payload]; // Add new alert to state
+
+    case REMOVE_ALERT:
+      return state.filter(alert => alert.id !== payload); // Remove alert by ID
+
+    default:
+      return state;
+  }
 }
